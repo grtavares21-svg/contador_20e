@@ -55,4 +55,9 @@ if historico:
     with st.expander("Ver histórico completo"):
         df_hist =pd.DataFrame({"#":range(1,len(historico)+1), "Data e Hora":historico})
         st.dataframe(df_hist,use_container_width=True,hide_index=True) 
-          
+
+#Botão Desfazer tudo
+if st.button("🔄 Resetar tudo"):
+    if st.checkbox("Tenho certeza"):
+        guardados,historico=dados.resetar()
+        st.rerun()
