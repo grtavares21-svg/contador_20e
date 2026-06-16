@@ -44,3 +44,8 @@ with col_btn2:
         st.rerun()
 st.divider()
 
+#Graficos
+if historico:
+    st.subheader("📊 Evolução Semanal")
+    df=pd.DataFrame({"Data":pd.to_datetime(historico)})
+    
