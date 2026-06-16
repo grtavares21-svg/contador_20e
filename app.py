@@ -48,4 +48,11 @@ st.divider()
 if historico:
     st.subheader("📊 Evolução Semanal")
     df=pd.DataFrame({"Data":pd.to_datetime(historico)})
-    
+    df["Semana"]=df["Data"].dt.to_period("W").astype(str) 
+    grafico= df.groupby("Semana").size().reset_index(name="20€ guardados")
+    st.bar_chart(grafico.set_index("Semana"))
+
+    with st.expander("Ver histórico completo"):
+        df_hist =pd.DataFrame({"#":range(1,len(historico)+1), "Data e Hora":historico})
+        st.dataframe(df_hist,use_container_width=True,hide_index=True) 
+          
